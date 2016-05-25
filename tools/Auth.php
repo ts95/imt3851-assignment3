@@ -25,6 +25,10 @@ class Auth {
     }
 
     public function __get($name) {
+        if (!isset($_SESSION['auth'])) {
+            return null;
+        }
+
         if (array_key_exists($name, $_SESSION['auth'])) {
             return $_SESSION['auth'][$name];
         }

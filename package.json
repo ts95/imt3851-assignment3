@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Assignment 3 in IMT3851 (Web programming II)",
   "main": "echo \"Error: main not specified\" && exit 1",
+  "port": 8000,
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
@@ -49,6 +50,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.8.0",
+    "bootstrap.native": "^1.0.2",
     "dom-shims": "^0.1.4",
     "vue": "^1.0.24",
     "vue-async-data": "^1.0.2",

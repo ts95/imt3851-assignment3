@@ -1,14 +1,16 @@
 <script>
-export default {
-    name: 'Home',
-    props: {
-        auth: {
-            required: true,
+    export default {
+        name: 'Home',
+        props: {
+            auth: {
+                required: true,
+            },
         },
-    },
-};
+    };
 </script>
 
 <template>
-    <h1>Home</h1>
+    <div class="container">
+        <h3>Home</h3>
+    </div>
 </template>

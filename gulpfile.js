@@ -6,10 +6,16 @@ var autoprefixer = require('gulp-autoprefixer');
 var babel = require('gulp-babel');
 var browserSync = require('browser-sync');
 
+var pkg = require('./package.json');
+
 gulp.task('browser', function() {
     browserSync({
-        proxy: 'http://localhost:8000',
+        proxy: 'http://localhost:' + pkg.port,
     });
+});
+
+gulp.task('reload', function() {
+    browserSync.reload();
 });
 
 gulp.task('webpack', function() {
@@ -33,6 +39,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('watch', function() {
+    gulp.watch('./*.php', ['reload']);
     gulp.watch('./assets/js/**/*.js', ['webpack']);
     gulp.watch('./assets/vue/**/*.vue', ['webpack']);
     gulp.watch('./assets/sass/**/*.scss', ['sass']);

@@ -11,23 +11,19 @@ $klein = new \Klein\Klein();
 
 $klein->respond(function($request, $response, $service, $app) use ($klein) {
     $app->auth = \Tools\Auth::getSingleton();
-
-    // Instantiate database object lazily upon each request.
-    $app->register('db', function() {
-        return new FluentPDO(new \Tools\CustomPDO());
-    });
+    $app->db = new FluentPDO(new \Tools\CustomPDO());
 });
 
-$klein->respond(function($request, $response, $service, $app) use ($klein) {
+foreach (glob('api/*.php') as $filename) {
+    $klein->with('/a/' . pathinfo($filename, PATHINFO_FILENAME), __DIR__ . '/' . $filename);
+}
+
+$klein->respond('GET', '!@^/a/', function($request, $response, $service, $app) use ($klein) {
     $service->render('layout.php', [
         'global' => [
             'auth' => $app->auth->user(),
         ],
     ]);
 });
-
-foreach (glob('api/*.php') as $filename) {
-    $klein->with('/' . pathinfo($filename, PATHINFO_FILENAME), "$filename");
-}
 
 $klein->dispatch();

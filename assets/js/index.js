@@ -9,9 +9,16 @@ import AsyncData from 'vue-async-data';
 import App from '../vue/App.vue';
 import Home from '../vue/Home.vue';
 
+import AuthLogin from '../vue/auth/Login.vue';
+import AuthRegister from '../vue/auth/Register.vue';
+
 Vue.use(Router);
 Vue.use(Resource);
 Vue.use(AsyncData);
+
+// Use application/x-www-form-urlencoded instead of
+// application/json since PHP doesn't support the latter.
+Vue.http.options.emulateJSON = true;
 
 let router = new Router({
     history: true,
@@ -20,6 +27,12 @@ let router = new Router({
 router.map({
     '/': {
         component: Home,
+    },
+    '/auth/login': {
+        component: AuthLogin,
+    },
+    '/auth/register': {
+        component: AuthRegister,
     },
 });
 
