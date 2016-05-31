@@ -1,7 +1,10 @@
 <script>
+    import Carousel from './Carousel.vue';
+  
     export default {
         name: 'ItemPage',
         components: {
+            Carousel,
         },
         props: {
             auth: {
@@ -45,6 +48,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
+                <carousel :images="images"></carousel>
                 <div class="interaction-row">
                     <button class="btn btn-primary" @click="request">Request this item</button>
                     <button class="btn btn-info">Message giver</button>
