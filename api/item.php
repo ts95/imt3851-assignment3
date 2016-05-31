@@ -86,6 +86,10 @@ $this->respond('POST', '/new', function($request, $response, $service, $app) {
         if (count($images) === 0)
             $fail("An item requires at least one image. You can, however, upload multiple.");
 
+        if (count($images) > 10) {
+            $fail("Maximum number of images is 10.");
+        }
+
         foreach ($images as $index => $image) {
             if (!in_array($image['type'], ['image/jpeg', 'image/png']))
                 $fail("Image #$index is not of type jpeg or png.");
