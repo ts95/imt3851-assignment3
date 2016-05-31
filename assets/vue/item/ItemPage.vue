@@ -47,13 +47,22 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                <carousel :images="images"></carousel>
+            <div class="col-md-6">
+                <carousel class="carousel" cid="item-carousel" :images="images"></carousel>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Giver</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h3 style="margin: 0">{{ item.giver }}</h3>
+                    </div>
+                </div>
+
                 <div class="interaction-row">
                     <button class="btn btn-primary" @click="request">Request this item</button>
                     <button class="btn btn-info">Message giver</button>
-
-                    <span class="label label-success label-default">{{ item.category_name }}</span>
                 </div>
 
                 <div class="panel panel-default">
@@ -65,16 +74,10 @@
                         <span v-else class="text-muted">No description.</span>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Giver</h3>
-                    </div>
-                    <div class="panel-body">
-                        <h3 style="margin: 0">{{ item.giver }}</h3>
-                    </div>
-                </div>
+
+                <h5>
+                    <span class="label label-default">{{ item.category_name }}</span>
+                </h5>
             </div>
         </div>
     </div>
@@ -83,10 +86,9 @@
 <style lang="sass">
     .interaction-row {
         margin: 10px 0 10px 0;
+    }
 
-        .label {
-            font-size: 1.2em;
-            margin-left: 10px;
-        }
+    .label {
+        margin-top: -5px;
     }
 </style>

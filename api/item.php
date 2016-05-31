@@ -39,7 +39,7 @@ $this->respond('GET', '/category/[i:id]/recent', function($request, $response, $
     $items = $app->db
         ->from('item')
         ->leftJoin('user')
-        ->leftJoin('item_image ON item_image.item_id = item.id')
+        ->leftJoin('item_image ON item_image.item_id = item.id AND item_image.position = 0')
         ->join('category ON category.id = item.category_id AND category.id = ?', $request->id)
         ->orderBy('item.created_at ASC')
         ->select('user.full_name AS giver')
