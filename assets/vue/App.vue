@@ -1,10 +1,12 @@
 <script>
-    import Navbar from './Navbar.vue';    
+    import Navbar from './Navbar.vue';
+    import PageFooter from './PageFooter.vue';
 
     export default {
         name: 'App',
         components: {
             Navbar,
+            PageFooter,
         },
         data() {
             return {
@@ -18,5 +20,6 @@
     <div>
         <navbar :auth="auth"></navbar>
         <router-view :auth="auth"></router-view>
+        <page-footer></page-footer>
     </div>
 </template>

@@ -22,9 +22,6 @@ so on.
 used for all the rendering. Vue.js will communicate with the server via AJAX in
 order to retrieve information from and provide information to the database.
 
-[Bootstrap Native](https://github.com/thednp/bootstrap.native) is used instead of
-plain bootstrap since this project doesn't have (nor need) jQuery as a dependency.
-
 # Setup
 Make sure that you have [composer](https://getcomposer.org/) and
 [npm](https://www.npmjs.com/) installed.

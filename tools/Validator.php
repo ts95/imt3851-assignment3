@@ -7,10 +7,27 @@ class Validator {
     private $params;
     private $errors;
 
-    public function __construct($params) {
+    public function __construct($params, $files = []) {
         $this->params = array_map(function($param) {
             return gettype($param) === 'string' ? trim($param) : $param;
         }, $params);
+
+        foreach ($files as $name => $file) {
+            $this->params[$name] = [];
+
+            $c = count($file['name']);
+
+            for ($i = 0; $i < $c; $i++) {
+                $this->params[$name][] = [
+                    'error' => $file['error'][$i],
+                    'name' => $file['name'][$i],
+                    'size' => $file['size'][$i],
+                    'tmp_name' => $file['tmp_name'][$i],
+                    'type' => $file['type'][$i],
+                ];
+            }
+        }
+
         $this->errors = [];
     }
 

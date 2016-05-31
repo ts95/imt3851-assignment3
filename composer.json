@@ -1,6 +1,7 @@
 {
     "require": {
         "klein/klein": "~2.1",
-        "fpdo/fluentpdo": "~1.0"
+        "fpdo/fluentpdo": "~1.0",
+        "ccampbell/chromephp": "~4.1"
     }
 }

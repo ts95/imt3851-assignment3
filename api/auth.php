@@ -3,8 +3,18 @@
 require_once __DIR__ . '/../tools/Tools.php';
 
 $this->respond('GET', '/[i:id]', function($request, $response, $service, $app) {
-    $user = $app->db->from('user', $request->id)->fetch();
-    $response->json($user);
+    $user = $app->db->from('safe_user', $request->id)->fetch();
+
+    if ($user) {
+        $response->json([
+            'ok' => true,
+            'user' => $user,
+        ]);
+    } else {
+        $response->json([
+            'ok' => false,
+        ]);
+    }
 });
 
 $this->respond('POST', '/login', function($request, $response, $service, $app) {

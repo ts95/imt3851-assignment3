@@ -3,10 +3,9 @@
  * Assumes that Vue Resource is used.
  *
  * @param {object} component - Vue.js component
- * @param {string} redirectLink - Redirect link
  * @returns {object} - Result
  */
-export default async function(component, redirectLink = '/') {
+export default async function(component) {
     let form = component.$el.querySelector('form');
 
     if (!form)
@@ -16,17 +15,24 @@ export default async function(component, redirectLink = '/') {
 
     for (let elem of Array.from(form.querySelectorAll('input, textarea, select'))) {
         let key = elem.getAttribute('name');
-        let value = null;
 
-        if (elem.files)
-            value = elem.files[0];
-        else
-            value = elem.value;
+        if (elem.files) {
+            console.log(elem.files);
 
-        if (data.append)
-            data.append(key, value);
-        else
-            data[key] = value;
+            for (let file of Array.from(elem.files)) {
+                if (data.append)
+                    data.append(`${key}[]`, file);
+                else
+                    console.log('Use enctype="multipart/form-data" for file upload.');
+            }
+        } else {
+            let value = elem.value;
+
+            if (data.append)
+                data.append(key, value);
+            else
+                data[key] = value;
+        }
     }
 
     let action = form.getAttribute('action');
@@ -54,8 +60,6 @@ export default async function(component, redirectLink = '/') {
     if (result.ok) {
         if (result.user)
             component.$root.$data.auth = result.user;
-
-        component.$route.router.go(redirectLink);
         return result;
     }
 

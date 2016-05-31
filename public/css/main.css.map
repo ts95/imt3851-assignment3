@@ -1,1 +1,1 @@
-{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAAA,KACI,oBAAsB,CACzB","file":"main.css","sourcesContent":["body {\n    margin: 80px 0 20px 0;\n}\n"],"sourceRoot":"/source/"}
+{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAAA,KACI,iBAAmB,CACtB","file":"main.css","sourcesContent":["body {\n    margin: 80px 0 0 0;\n}\n"],"sourceRoot":"/source/"}

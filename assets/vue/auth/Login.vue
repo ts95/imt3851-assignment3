@@ -11,7 +11,10 @@
         methods: {
             submit: async function() {
                 try {
-                    let result = await validator(this, '/');
+                    let result = await validator(this);
+
+                    if (result.ok)
+                        this.$route.router.go('/');
                 } catch (err) {
                     console.log(err);
                 }

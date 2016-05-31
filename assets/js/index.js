@@ -12,6 +12,11 @@ import Home from '../vue/Home.vue';
 import AuthLogin from '../vue/auth/Login.vue';
 import AuthRegister from '../vue/auth/Register.vue';
 
+import ItemNewItem from '../vue/item/NewItem.vue';
+import ItemItemPage from '../vue/item/ItemPage.vue';
+
+import MessageMessagePage from '../vue/message/MessagePage.vue';
+
 Vue.use(Router);
 Vue.use(Resource);
 Vue.use(AsyncData);
@@ -22,6 +27,7 @@ Vue.http.options.emulateJSON = true;
 
 let router = new Router({
     history: true,
+    linkActiveClass: 'active',
 });
 
 router.map({
@@ -33,6 +39,17 @@ router.map({
     },
     '/auth/register': {
         component: AuthRegister,
+    },
+    '/item/:id': {
+        component: ItemItemPage,
+    },
+    '/item/new-item': {
+        auth: true,
+        component: ItemNewItem,
+    },
+    '/messages': {
+        auth: true,
+        component: MessageMessagePage,
     },
 });
 
