@@ -27,7 +27,7 @@ $this->respond('GET', '/[i:id]/images', function($request, $response, $service, 
     $images = $app->db
         ->from('item_image')
         ->where('item_id', $request->id)
-        ->orderBy('position DESC')
+        ->orderBy('position ASC')
         ->fetchAll();
 
     $response->json([
