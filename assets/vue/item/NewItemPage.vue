@@ -2,7 +2,7 @@
     import validator from '../../js/validator';
 
     export default {
-        name: 'NewItem',
+        name: 'NewItemPage',
         props: {
             auth: {
                 required: true,

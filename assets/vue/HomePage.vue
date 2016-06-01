@@ -3,7 +3,7 @@
     import ItemRow from './item/ItemRow.vue';
 
     export default {
-        name: 'Home',
+        name: 'HomePage',
         components: {
             ItemRow,
         },

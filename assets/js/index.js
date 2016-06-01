@@ -7,15 +7,16 @@ import Router from 'vue-router';
 import AsyncData from 'vue-async-data';
 
 import App from '../vue/App.vue';
-import Home from '../vue/Home.vue';
 
-import AuthLogin from '../vue/auth/Login.vue';
-import AuthRegister from '../vue/auth/Register.vue';
+import HomePage from '../vue/HomePage.vue';
 
-import ItemNewItem from '../vue/item/NewItem.vue';
-import ItemItemPage from '../vue/item/ItemPage.vue';
+import LoginPage from '../vue/auth/LoginPage.vue';
+import RegisterPage from '../vue/auth/RegisterPage.vue';
 
-import MessageMessagePage from '../vue/message/MessagePage.vue';
+import NewItemPage from '../vue/item/NewItemPage.vue';
+import ItemPage from '../vue/item/ItemPage.vue';
+
+import MessagePage from '../vue/message/MessagePage.vue';
 
 Vue.use(Router);
 Vue.use(Resource);
@@ -32,24 +33,24 @@ let router = new Router({
 
 router.map({
     '/': {
-        component: Home,
+        component: HomePage,
     },
     '/auth/login': {
-        component: AuthLogin,
+        component: LoginPage,
     },
     '/auth/register': {
-        component: AuthRegister,
+        component: RegisterPage,
     },
     '/item/:id': {
-        component: ItemItemPage,
+        component: ItemPage,
     },
     '/item/new-item': {
         auth: true,
-        component: ItemNewItem,
+        component: NewItemPage,
     },
     '/messages': {
         auth: true,
-        component: MessageMessagePage,
+        component: MessagePage,
     },
 });
 
