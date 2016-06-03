@@ -6,7 +6,7 @@ CREATE TABLE user (
     admin BOOLEAN NOT NULL DEFAULT false,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(id, email)
+    PRIMARY KEY(id)
 );
 
 CREATE VIEW safe_user AS
@@ -41,28 +41,20 @@ CREATE TABLE item_image (
     FOREIGN KEY(item_id) REFERENCES item(id)
 );
 
-/* Chats that a given user belongs to */
-CREATE TABLE chat_user (
-    id INTEGER NOT NULL AUTO_INCREMENT,
-    chat_id INTEGER NOT NULL,
+CREATE TABLE exchange (
+    id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
-    PRIMARY KEY(id),
-    FOREIGN KEY(chat_id) REFERENCES chat(id),
+    PRIMARY KEY(id, user_id),
     FOREIGN KEY(user_id) REFERENCES user(id)
 );
 
-/* Chats that each contain an array of messages between exactly two people. */
-CREATE TABLE chat (
-    id INTEGER NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY(id)
-);
-
-/* A message */
 CREATE TABLE message (
     id INTEGER NOT NULL AUTO_INCREMENT,
-    chat_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    exchange_id INTEGER NOT NULL,
     message VARCHAR(2000) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id),
-    FOREIGN KEY(chat_id) REFERENCES chat(id)
+    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(exchange_id) REFERENCES exchange(id)
 );

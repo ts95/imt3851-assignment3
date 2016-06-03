@@ -14,7 +14,7 @@
     #page-footer {
         width: 100%;
         height: 100px;
-        padding: 20px;
+        padding: 10px;
         margin: 10px 0 0 0;
 
         .copyright {

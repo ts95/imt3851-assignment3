@@ -52,6 +52,10 @@ router.map({
         auth: true,
         component: MessagePage,
     },
+    '/messages/:id': {
+        auth: true,
+        component: MessagePage,
+    },
 });
 
 router.beforeEach((transition) => {

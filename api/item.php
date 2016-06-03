@@ -53,6 +53,27 @@ $this->respond('GET', '/category/[i:id]/recent', function($request, $response, $
     ]);
 });
 
+$this->respond('GET', '/search', function($request, $response, $service, $app) {
+    $query = $request->param('query');
+    $q = '%' . mb_ereg_replace('%', '[%]', $query) . '%';
+
+    $items = $app->db
+        ->from('item')
+        ->leftJoin('user')
+        ->leftJoin('item_image ON item_image.item_id = item.id AND item_image.position = 0')
+        ->join('category ON category.id = item.category_id AND (item.title LIKE ? OR category.name LIKE ?)', $q, $q)
+        ->orderBy('item.created_at ASC')
+        ->select('user.full_name AS giver')
+        ->select('item_image.filename AS filename')
+        ->select('category.name AS category_name')
+        ->limit(10)
+        ->fetchAll();
+
+    $response->json([
+        'items' => $items,
+    ]);
+});
+
 $this->respond('POST', '/new', function($request, $response, $service, $app) {
     if (!$app->auth->isLoggedIn()) {
         $response->json([
@@ -83,8 +104,10 @@ $this->respond('POST', '/new', function($request, $response, $service, $app) {
     });
 
     $validator->validate('images', function($images, $params, $fail) {
+        ChromePhp::log(count($images));
+
         if (count($images) === 0)
-            $fail("An item requires at least one image. You can, however, upload multiple.");
+            $fail("Image required (you may upload multiple.)");
 
         if (count($images) > 10) {
             $fail("Maximum number of images is 10.");

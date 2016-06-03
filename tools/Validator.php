@@ -41,6 +41,15 @@ class Validator {
 
             if (count($messages) > 0)
                 $this->errors[$name] = $messages;
+        } else {
+            $messages = [];
+
+            $cb([], $this->params, function($message) use(&$messages) {
+                $messages[] = $message;
+            });
+
+            if (count($messages) > 0)
+                $this->errors[$name] = $messages;
         }
     }
 

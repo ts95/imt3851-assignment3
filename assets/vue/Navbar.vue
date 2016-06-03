@@ -44,22 +44,23 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <template v-if="auth">
-                        <li class="dropdown">
+                        <li v-link-active><a v-link="{ path: '/messages'} "><span class="glyphicon glyphicon-envelope"></span></a></li>
+                        <!-- <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-envelope"></span></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-messages" role="menu">
                                 <div class="glyphicon glyphicon-ok"></div>
                                 <div class="text-center">No new <a v-link="{ path: '/messages' }">messages</a></div>
                             </div>
-                        </li>
-                        <li class="dropdown">
+                        </li> -->
+                        <!-- <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-notifications" role="menu">
                                 <div class="glyphicon glyphicon-ok"></div>
                                 <div class="text-center">No new notifications</div>
                             </div>
-                        </li>
+                        </li> -->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ auth.full_name }} <span class="caret"></span>
                             </a>
