@@ -1,6 +1,7 @@
 # imt3851-assignment3
 Assignment 3 in IMT3851 (Web programming II)
-You can see a live running instance of this website at [http://giveaway.tonisucic.com/](giveaway.tonisucic.com).
+
+You can see a live running instance of this website at [giveaway.tonisucic.com](https://giveaway.tonisucic.com/).
 
 # Architecture
 
